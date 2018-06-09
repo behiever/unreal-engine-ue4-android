@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/share_bg_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorLine"/>
+
+    <GridView
+        android:id="@+id/share_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:listSelector="@android:color/transparent"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp" />
+
+    <Button
+        android:id="@+id/share_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/colorShareBtnBg"
+        android:gravity="center"
+        android:text="@string/imsdk_webview_cancel"
+        android:textColor="@color/colorFonts"
+        android:textSize="@dimen/cancel_font_size"
+        android:typeface="monospace" />
+
+</LinearLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="ShareChannel">
+        <!--<item>Facebook</item>-->
+		<!--<item>WeChat</item>-->
+    </string-array>
+	
+	<string-array name="urlKeyFilter">
+        <!--<item>Key1</item>-->
+        <!--<item>Key2</item>-->
+        <!--<item>Key3</item>-->
+    </string-array>
+
+</resources>

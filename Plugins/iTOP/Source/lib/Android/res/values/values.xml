@@ -1,0 +1,11 @@
+<resources>
+<string name="default_web_client_id">263738040849-r0c37o6h0q7r479dlkhrsu0oae1js1tf.apps.googleusercontent.com</string>
+<string name="firebase_database_url">https://imsdk-1051.firebaseio.com</string>
+<string name="gcm_defaultSenderId">263738040849</string>
+<string name="google_api_key">AIzaSyCmNTRpx-0B5TEFFMxTWiqavElhrGBGdC0</string>
+<string name="google_app_id">1:263738040849:android:cc76b90af5c65871</string>
+<string name="google_crash_reporting_api_key">AIzaSyCmNTRpx-0B5TEFFMxTWiqavElhrGBGdC0</string>
+<string name="google_storage_bucket">imsdk-1051.appspot.com</string>
+<string name="com.twitter.sdk.android.CONSUMER_KEY">D9Qhy7jWIxjVKKLBnfw78RSt9</string>
+<string name="com.twitter.sdk.android.CONSUMER_SECRET">6O3Ag0EAdFQJLlY3GDbneTWeXooQBepYC8Z8a8nebfc4iQn66j</string>
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="share_success">Отправлено</string>
+    <string name="share_failure">Ошибка отправки</string>
+    <string name="share_cancel">Отправка отменена</string>
+
+    <string name="imsdk_webview_cancel">Отмена</string>
+
+</resources>

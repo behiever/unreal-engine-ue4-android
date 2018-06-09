@@ -1,0 +1,23 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "iTOP",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "iTOP",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "iTOP",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}

@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "263738040849",
+    "firebase_url": "https://imsdk-1051.firebaseio.com",
+    "project_id": "imsdk-1051",
+    "storage_bucket": "imsdk-1051.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263738040849:android:cc76b90af5c65871",
+        "android_client_info": {
+          "package_name": "com.tencent.imsdk.samples"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263738040849-r0c37o6h0q7r479dlkhrsu0oae1js1tf.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "263738040849-kgcholbfoi8163lpn8ke3l3dsc3pvtu4.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "263738040849-da5o1uv99hoh6ft13fadm33v440vck7k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tencent.imsdk.samples",
+            "certificate_hash": "a5c860746110df01eb571e559a86480052476eeb"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmNTRpx-0B5TEFFMxTWiqavElhrGBGdC0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263738040849-r0c37o6h0q7r479dlkhrsu0oae1js1tf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

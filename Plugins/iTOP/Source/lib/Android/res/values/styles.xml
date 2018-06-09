@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="IMSDKWebViewTheme" parent="Theme.AppCompat">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>

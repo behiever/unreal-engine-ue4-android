@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- 内置浏览器使用 -->
+    <string name="msdk_upload_file_title">"update file"</string>
+    <string name="imsdk_webview_back">go back</string>
+    <string name="imsdk_webview_forward">forward</string>
+    <string name="imsdk_webview_refresh">refresh</string>
+    <string name="imsdk_webview_stop">stop</string>
+    <string name="imsdk_webview_close">close</string>
+    <string name="imsdk_webview_share">share</string>
+
+    <!--<string name="share_facebook">Share to Facebook</string>-->
+    <!--<string name="share_browser">Open to Browser</string>-->
+
+    <string name="share_facebook">Facebook</string>
+    <string name="share_wechat">WeChat</string>
+    <string name="share_browser">Browser</string>
+
+    <string name="imsdk_webview_cancel">CANCEL</string>
+    <string name="share_success">Shared</string>
+    <string name="share_failure">Sharing failed</string>
+    <string name="share_cancel">Sharing canceled</string>
+    <string name="share_icon_desc">icon desc</string>
+
+    <string name="toolbar_tag_land_show">true</string>
+
+</resources>

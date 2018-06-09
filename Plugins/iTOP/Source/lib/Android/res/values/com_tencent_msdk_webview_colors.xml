@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="thrdcall_black">#ff000000</color>
+    <color name="thrdcall_white">#ffffffff</color>
+    <drawable name="thrdcall_delete_bg">#413e3e</drawable>
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorFonts">#CAAE7D</color>
+    <color name="colorProgressBar">#CAAE7D</color>
+
+    <color name="colorLine">#101A2A</color>
+    <color name="colorToolbarBg">#1E1E20</color>
+    <color name="colorShareBtnBg">#484848</color>
+    <color name="colorWebViewBg">#484848</color>
+    <color name="colorShareBg">#333538</color>
+
+    <color name="colorShareAllBg">#99000000</color>
+    <color name="colorCoverBg">#D9060C17</color>
+    <color name="colorToastText">#A6E1FF</color>
+    <color name="colorToastBg">#817F80</color>
+
+</resources>

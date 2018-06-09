@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="share_success">Compartido</string>
+    <string name="share_failure">Error al Compartir</string>
+    <string name="share_cancel">Cancelado</string>
+
+    <string name="imsdk_webview_cancel">Cancelar</string>
+
+</resources>

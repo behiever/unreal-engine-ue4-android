@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/qq_webview_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.tencent.imsdk.android.webview.qq.WebViewWithFavActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/qq_webview_top_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_all_height"
+        android:tag="@string/toolbar_tag_land_show"
+        android:background="@color/colorToolbarBg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_scrollFlags="scroll|enterAlways|snap">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_weight="11"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/colorFonts"
+                    android:textSize="18sp" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <include
+                        android:id="@+id/view_refresh_top"
+                        layout="@layout/layout_refresh_item"
+                        android:layout_width="@dimen/toolbar_icon_height"
+                        android:layout_height="@dimen/toolbar_icon_height" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressbar_top"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:max="100"
+                android:progressDrawable="@drawable/progress_bar_states"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <com.tencent.imsdk.android.webview.qq.NestedWebView
+        android:id="@+id/nested_webview_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWebViewBg"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    </com.tencent.imsdk.android.webview.qq.NestedWebView>
+
+    <LinearLayout
+    android:id="@+id/qq_webview_bottom_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/toolbar_all_height"
+    android:layout_gravity="bottom"
+    android:background="@color/colorToolbarBg"
+    android:orientation="vertical"
+    app:layout_behavior="com.tencent.imsdk.android.webview.qq.BottomBehaviorPortrait">
+
+    <ProgressBar
+        android:id="@+id/progressbar_bottom"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:max="100"
+        android:progressDrawable="@drawable/progress_bar_states"
+        android:visibility="gone" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="11"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:focusable="true"
+            android:clickable="true"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="@dimen/toolbar_icon_height"
+                android:layout_height="@dimen/toolbar_icon_height"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/imsdk_webview_back"
+                android:onClick="backOnClick"
+                android:scaleType="fitXY"
+                android:src="@drawable/back" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/forward"
+                android:layout_width="@dimen/toolbar_icon_height"
+                android:layout_height="@dimen/toolbar_icon_height"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/imsdk_webview_forward"
+                android:onClick="forwardOnClick"
+                android:scaleType="fitXY"
+                android:src="@drawable/forward" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_refresh_bottom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <include
+                android:id="@+id/view_refresh_bottom"
+                layout="@layout/layout_refresh_item"
+                android:layout_width="@dimen/toolbar_icon_height"
+                android:layout_height="@dimen/toolbar_icon_height" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/share"
+                android:layout_width="@dimen/toolbar_icon_height"
+                android:layout_height="@dimen/toolbar_icon_height"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/imsdk_webview_share"
+                android:onClick="shareOnclick"
+                android:scaleType="fitXY"
+                android:src="@drawable/share" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/return_app"
+                android:layout_width="@dimen/toolbar_icon_height"
+                android:layout_height="@dimen/toolbar_icon_height"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/imsdk_webview_close"
+                android:onClick="closeOnClick"
+                android:scaleType="fitXY"
+                android:src="@drawable/close" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,13 @@
+{
+    "guide":"用于动态下发更新 app.plist 配置项, 键是服务器下发的配置项；数组中最后一位表示类型（1-String，2-Number，3-Bool），剩余的表示 app.plist 配置项的路径",
+    "data":{
+        "IMSDK_SERVER_SDKAPI":["IMSDKServer",1],
+        "IMSDK_SERVER_NOTICE":["IMSDKServerNotice",1],
+        "IMSDK_SERVER_HELP":["IMSDKServerHelp",1],
+        "IMSDK_SERVER_CONFIG":["IMSDKServerConfig",1],
+        "IMSDK_DOCS_TOOL_URL":["IMSDKDocsUrl",1],
+        "IMSDK_LOG_LEVEL":["IMSDKLogLevel",2],
+        "IMSDK_GAME_ID":["GameId",1],
+        "IMSDK_BEACON_APP_KEY":["Beacon","appid",1],
+    }
+}

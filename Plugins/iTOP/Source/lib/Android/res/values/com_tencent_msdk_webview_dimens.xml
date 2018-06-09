@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <dimen name="toolbar_all_height">48dp</dimen>
+    <dimen name="toolbar_height">44dp</dimen>
+    <dimen name="progress_bar_height">4dp</dimen>
+    <dimen name="grid_padding_top">3dp</dimen>
+    <dimen name="grid_icon_height">50dp</dimen>
+    <dimen name="toolbar_icon_height">25dp</dimen>
+    <dimen name="toast_bg_height">35dp</dimen>
+    <dimen name="toast_padding_lr">30dp</dimen>
+    <dimen name="toast_width">133dp</dimen>
+    <dimen name="toast_height">29dp</dimen>
+
+    <dimen name="cancel_font_size">20sp</dimen>
+    <dimen name="title_font_size">15sp</dimen>
+
+</resources>

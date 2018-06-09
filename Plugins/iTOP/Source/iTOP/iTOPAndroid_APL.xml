@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--LogicCore additions-->
+<root xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" 
+     >
+  <!-- 初始化-->
+  <init>
+    <log text="iTOP init"/>
+  </init>
+
+  <!--在ndk-build编译之前，从Intermediate/Android/APK中拷贝或删除文件-->
+  <prebuildCopies>
+    <log text="iTOP SDK Copy Dirs Begin. PluginDir is $S(PluginDir), BuildDir is $S(BuildDir)"/>
+  </prebuildCopies>
+
+  <!-- 拷贝文件或目录到Intermediate/Android/APK  -->
+  <resourceCopies>
+    <log text="iTOP Start copy start...$S(PluginDir)" />
+    <copyDir src="$S(PluginDir)/../lib/Android/libs/" dst="$S(BuildDir)/libs/"/>
+    <copyDir src="$S(PluginDir)/../lib/Android/assets/" dst="$S(BuildDir)/assets"/>
+    <copyDir src="$S(PluginDir)/../lib/Android/res/" dst="$S(BuildDir)/res"/>
+  </resourceCopies>
+
+  <!-- Gradle -->
+  <baseBuildGradleAdditions>
+  </baseBuildGradleAdditions>
+  <buildGradleAdditions>
+    <insert>
+      dependencies {
+      compile 'com.android.support:design:25.0.0'
+      compile 'com.android.support:appcompat-v7:25.0.0'
+      compile 'com.facebook.android:facebook-android-sdk:4.29.0'
+      compile 'com.facebook.android:facebook-core:4.29.0'
+      compile 'com.adjust.sdk:adjust-android:4.12.0'
+      compile 'com.android.installreferrer:installreferrer:1.0'
+      compile 'com.google.firebase:firebase-messaging:11.0.4'
+      compile 'com.google.android.gms:play-services-basement:11.0.4'
+      compile 'com.google.android.gms:play-services-base:11.0.4'
+      compile 'com.google.firebase:firebase-core:11.0.4'
+      compile 'com.google.android.gms:play-services-auth:11.0.4'
+      compile 'com.google.android.gms:play-services-games:11.0.4'
+      compile 'com.twitter.sdk.android:tweet-composer:3.1.1'
+      compile 'com.twitter.sdk.android:twitter-core:3.1.1'
+	  compile 'com.vk:androidsdk:1.6.9'
+      }
+    </insert>
+  </buildGradleAdditions>
+
+  <baseBuildGradleAdditions>
+    <insert>
+      allprojects {
+        repositories {
+          jcenter()
+          maven {
+            url "https://maven.google.com" 
+        }
+      }
+    }
+    </insert>
+  </baseBuildGradleAdditions>
+
+  <androidManifestUpdates>
+    <log text="androidManifestUpdates begin" />  
+   
+    <!-- MultiDex用到的application 记录在此防止备忘 -->
+    <!-- <addAttribute tag="application" name="android:name" value="android.support.multidex.MultiDexApplication"/> -->
+    <!--【***************iTOP配置***************】 -->
+    <addElements tag="application">
+      <activity
+             android:name="com.tencent.imsdk.android.base.IMSDKProxyActivity"
+             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+             android:exported="true"
+             android:launchMode="singleTop"
+             android:multiprocess="true"
+             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+      
+      <!-- 【*************Notice配置***************】 -->
+      <meta-data
+          android:name="IMSDK_SERVER_SDKAPI"
+          android:value="hk-sdkapi-beta.itop.qq.com"/>
+      <meta-data
+          android:name="IMSDK_SERVER_NOTICE"
+          android:value="hk-sdkapi-beta.itop.qq.com"/>
+      <meta-data
+          android:name="IMSDK_SERVER_HELP"
+          android:value="hk-sdkapi-beta.itop.qq.com"/>
+      <meta-data
+          android:name="IMSDK_SERVER_HELP_SCHEME"
+          android:value="http"/>
+      <meta-data
+          android:name="IMSDK_SERVER_CONFIG"
+          android:value="hk-sdkapi-beta.itop.qq.com"/>
+      <meta-data
+          android:name="IMSDK_GAME_ID"
+          android:value="11"/>
+      <meta-data
+          android:name="IMSDK_LOG_LEVEL"
+          android:value="2"/>
+      <meta-data
+          android:name="IMSDK_DEBUG"
+          android:value="true"/> 
+      <meta-data android:name="IMSDK_NOTICE_INTERVAL_REQUEST" android:value="10000"/> 
+      <meta-data
+          android:name="IMSDK_NETWORK_TIMEOUT_MS"
+          android:value="30000"/> 
+      <meta-data
+          android:name="IMSDK_NETWORK_MAX_RETRIES"
+          android:value="1"/>
+      
+      
+      <!-- 【*************Login配置***************】 --> 
+      <!-- FB_Login模块需要用到的配置 -->
+      <activity
+          android:name="com.facebook.FacebookActivity"
+          android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+          android:label="@string/app_name" /> 
+      <meta-data
+               android:name="com.facebook.sdk.ApplicationId"
+               android:value="\ 423362744481374" />
+
+      <!-- GOOGLE_Login模块需要用到的配置 --> 
+      <meta-data
+           android:name="IMSDK_GOOGLE_CLIENT_KEY"
+           android:value="263738040849-kgcholbfoi8163lpn8ke3l3dsc3pvtu4.apps.googleusercontent.com" />
+           
+      <!-- Wechat_Login模块需要用到的配置 -->
+      <meta-data
+      android:name="IMSDK_WECHAT_APP_ID"
+      android:value="wxef53dd2d66ca6c54" />
+      
+      <activity
+      android:name="com.tencent.imsdk.android.agent.wechat.WeChatAgentActivity"
+      android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+      android:exported="true"
+      android:launchMode="singleTop"
+      android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+      
+      <!-- "com.tencent.imsdk.samples" 需要改成应用包名 -->
+      <activity-alias
+      android:name="com.tencent.imsdk.samples.wxapi.WXEntryActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      android:exported="true"
+      android:launchMode="singleTop"
+      android:targetActivity="com.tencent.imsdk.android.agent.wechat.WeChatAgentActivity" />
+      
+      <!-- 【***************统计上报配置***************】 -->
+      <!-- 配置Beacon-->
+      <meta-data
+          android:name="IMSDK_BEACON_APP_KEY"
+          android:value="0I40061SZ81FIQ8L"/> 
+      <meta-data android:name="CHANNEL_DENGTA" android:value="1001"/>
+      
+      <!-- adjust配置 -->
+      <meta-data
+           android:name="IMSDK_STAT_ADJUST_APP_TOKEN"
+           android:value="yc6xkqk8vdhc" />
+      <receiver android:name="com.adjust.sdk.AdjustReferrerReceiver" android:exported="true">
+        <intent-filter>
+          <action android:name="com.android.vending.INSTALL_REFERRER"/>
+        </intent-filter>
+      </receiver>
+      <!-- adjust-deeplink功能配置 -该配置应该写在gameactivity节点下面，但当前合并存在问题，由项目组改引擎进行解决了，记录在这里以免备忘 -->
+   <!--  <intent-filter>
+          <action android:name="android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <category android:name="android.intent.category.BROWSABLE" />
+          <data android:scheme="IMSDKAdjust" />
+      </intent-filter>  -->
+   
+      <!-- bugly的配置 -->
+      <meta-data
+                 android:name="BUGLY_APPID"
+                 android:value="900003637" />
+      <!-- 配置APP版本号 -->
+      <meta-data
+          android:name="BUGLY_APP_VERSION"
+          android:value="1.0.1" />
+      <!-- 配置APP渠道号 -->
+      <meta-data
+          android:name="BUGLY_APP_CHANNEL"
+          android:value="IMSDK" />
+      <!-- 配置Bugly调试模式（true或者false）-->
+      <meta-data
+          android:name="BUGLY_ENABLE_DEBUG"
+          android:value="true" />  
+
+      <!-- 【***************信鸽PUSH配置***************】 -->  
+      <meta-data
+          android:name="IMSDK_PUSH_FOREIGN_ENABLE"
+          android:value="false"/>
+      <meta-data
+          android:name="IMSDK_PUSH_FCM_ENABLE"
+          android:value="true"/>
+      <activity android:name="com.tencent.android.tpush.XGPushActivity" android:exported="false" />
+      <!-- 这里是业务自定义的receiver，若已配置请设置exported为false，否则可忽略之 -->
+      <receiver android:name="com.tencent.imsdk.android.push.xg.IMSDKXGPushReceiver" android:exported="false">
+        <intent-filter>
+          <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE" />
+          <action android:name="com.tencent.android.tpush.action.FEEDBACK" />
+        </intent-filter>
+      </receiver>
+      <service
+         android:name="com.tencent.android.tpush.service.XGPushServiceV3"
+         android:exported="true"
+         android:persistent="true"
+         android:process=":xg_service_v3" />
+      <!-- 【必须】 通知service，此选项有助于提高抵达率 -->
+      <service
+          android:name="com.tencent.android.tpush.rpc.XGRemoteService"
+          android:exported="true" >
+        <intent-filter>
+          <!-- 【必须】 请修改为当前APP包名.PUSH_ACTION-->
+          <action android:name="com.tencent.imsdk.samples.PUSH_ACTION" />
+        </intent-filter>
+      </service>
+      <!-- 【必须】 【注意】authorities修改为 包名.AUTH_XGPUSH, 如demo的包名为：com.tencent.imsdk.samples-->
+      <provider
+          android:name="com.tencent.android.tpush.XGPushProvider"
+          android:authorities="com.tencent.imsdk.samples.AUTH_XGPUSH"
+          android:exported="true"
+        />
+      <!-- 【必须】 【注意】authorities修改为 包名.TPUSH_PROVIDER, 如demo的包名为：com.tencent.imsdk.samples-->
+      <provider
+          android:name="com.tencent.android.tpush.SettingsContentProvider"
+          android:authorities="com.tencent.imsdk.samples.TPUSH_PROVIDER"
+          android:exported="false" />
+      <!-- 【必须】 【注意】authorities修改为 包名.TENCENT.MID.V3, 如demo的包名为：com.tencent.imsdk.samples-->
+      <provider
+          android:name="com.tencent.mid.api.MidProvider"
+          android:authorities="com.tencent.imsdk.samples.TENCENT.MID.V3"
+          android:exported="true" >
+      </provider>
+      <!-- 【必须】 请修改为APP的AccessId，“21”开头的10位数字，中间没空格 -->
+      <meta-data
+          android:name="XG_V2_ACCESS_ID"
+          android:value="2100187299" />
+      <!-- 【必须】 请修改为APP的AccessKey，“A”开头的12位字符串，中间没空格 -->
+      <meta-data
+          android:name="XG_V2_ACCESS_KEY"
+          android:value="APG2QK3W628K" />
+      <service
+       android:name="com.tencent.android.fcm.XGFcmListenerService"
+       android:exported="true" >
+        <intent-filter android:priority="-500" >
+          <action android:name="com.google.firebase.MESSAGING_EVENT" />
+        </intent-filter>
+      </service>
+      <service
+         android:name="com.tencent.android.fcm.XGFcmInstanceIDListenerService"
+         android:exported="true" >
+        <intent-filter android:priority="-500" >
+          <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+        </intent-filter>
+      </service>
+      <receiver
+           android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+           android:exported="true"
+           android:permission="com.google.android.c2dm.permission.SEND" >
+        <intent-filter>
+          <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+          <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+          <category android:name="com.tencent.imsdk.samples" />
+        </intent-filter>
+      </receiver>
+      <receiver
+          android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver"
+          android:exported="false" />
+      <service android:name="com.google.firebase.messaging.FirebaseMessagingService" android:exported="true" tools:node="remove">
+          <intent-filter android:priority="-500">
+              <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+          </intent-filter>
+      </service>
+      <provider
+            android:authorities="com.tencent.imsdk.android.IMSDKFileProvider"
+            android:name="com.tencent.imsdk.android.friend.IMSDKFileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/imsdk_file_paths" />
+      </provider>
+      
+      <!-- 心跳频率限制，为true时心跳为1小时一次 -->
+      <meta-data
+      android:name="XG_WEAK_ALARM"
+      android:value="true" />
+
+      <!-- 【***************WEBVIEW配置***************】 -->
+      <activity
+           android:name="com.tencent.imsdk.android.webview.qq.WebViewWithFavActivity"
+           android:configChanges="orientation|screenSize|keyboardHidden|navigation|fontScale|locale"
+           android:launchMode="singleTask"
+           android:screenOrientation="sensor"
+           android:theme="@style/IMSDKWebViewTheme"
+           android:process=":imsdk_inner_webview"
+           android:windowSoftInputMode="adjustPan" >
+      </activity> 
+      <service android:name="com.tencent.imsdk.android.webview.qq.WebViewService"/> 
+      <meta-data android:name="com.tencent.imsdk.webviewTicketServer" android:value="/user"/>
+      <meta-data android:name="com.tencent.imsdk.webview.navHide" android:value="false"/>
+      <meta-data android:name="com.tencent.imsdk.webview.x5work" android:value="true"/>
+      <meta-data android:name="com.tencent.imsdk.webview.nestScroll" android:value="true"/>
+	  
+	  <!-- 【***************VK配置***************】 -->
+	  <!-- 配置VK_SDK_APP_ID，请使用自己APP的VK_SDK_APP_ID-->
+      <meta-data android:name="IMSDK_VK_SDK_APP_ID" android:value="5339345" />
+      <!-- 取消硬件加速 -->
+      <activity
+			android:name="com.vk.sdk.VKServiceActivity"
+            android:label="ServiceActivity"
+            android:theme="@style/VK.Transparent"
+            android:hardwareAccelerated="false"/>
+    </addElements>
+
+    <log text="addPermission begin" />
+    <addPermission android:name="android.permission.INTERNET" />
+    <addPermission android:name="android.permission.ACCESS_WIFI_STATE"/> 
+    <addPermission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <addPermission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <addPermission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <addPermission android:name="android.permission.CHANGE_WIFI_STATE" /> 
+    <addPermission android:name="android.permission.READ_LOGS" /> 
+    <addPermission android:name="android.permission.WAKE_LOCK" />
+    <addPermission android:name="android.permission.VIBRATE" />
+    <addPermission android:name="com.tencent.imsdk.samples.permission.C2D_MESSAGE" />
+    <addPermission android:name="com.google.android.c2dm.permission.RECEIVE" />
+  </androidManifestUpdates>
+
+  <!--在libUE4.so库加载之前需要加载的库,iTOP.so库用于接受java端的回调-->
+  <soLoadLibrary>
+     <loadLibrary name="IMSDK" failmsg="IMSDK library not loaded and required!"/>  
+  </soLoadLibrary>
+
+  <!-- GameActivity.java中导入类 -->
+  <gameActivityImportAdditions>
+    <insert>
+      import java.util.HashMap;
+      import com.tencent.imsdk.android.api.notice.IMSDKNotice;
+      import com.tencent.imsdk.android.api.login.IMSDKLogin;
+      import com.tencent.imsdk.android.api.IMSDKResult;
+      import com.tencent.imsdk.android.api.relation.IMSDKFriend;
+      import com.tencent.imsdk.android.api.lbs.IMSDKLbs;
+      import com.tencent.imsdk.android.api.stat.IMSDKStat; 
+      import com.tencent.imsdk.android.api.push.IMSDKPush;
+      import com.tencent.imsdk.android.api.webview.IMSDKWebView;   
+      import com.tencent.imsdk.android.extend.adjust.AdjustExtend;
+      import com.adjust.sdk.Adjust;
+    </insert>
+  </gameActivityImportAdditions>
+
+  <!--GameActivity.java导完类之后要做的事情 -->
+  <gameActivityPostImportAdditions>
+  </gameActivityPostImportAdditions>
+
+  <!-- GameActivity.java类中添加代码 -->
+  <gameActivityClassAdditions>
+    <insert>
+      <![CDATA[  
+     ]]>
+    </insert>
+  </gameActivityClassAdditions>
+
+  <!--GameActivity.java onCreate添加代码 -->
+  <gameActivityOnCreateAdditions>
+    <insert>
+      <![CDATA[
+         IMSDKLogin.initialize(this);   
+         IMSDKFriend.initialize(this);
+         IMSDKNotice.initialize(this);
+         IMSDKStat.initialize(this);  
+         IMSDKWebView.initialize(this);
+         IMSDKPush.initialize(this);
+         HashMap<String, String[]> typeAndChannels = new HashMap<String, String[]>(){
+            { 
+                    put("eventReport",new String[]{"Adjust","Beacon","Facebook", "Firebase"}); 
+                    put("eventTrack",new String[]{""});
+                    put("purchaseReport",new String[]{"Adjust"});
+                    put("exceptionReport",new String[]{"Beacon"});
+                    put("crashReport",new String[]{"Bugly"});
+                    put("pageTrack",null);
+                    put("testSpeed",new String[0]);
+            }
+        };
+        IMSDKStat.initChannel(typeAndChannels);
+        IMSDKLbs.initialize(this);
+        IMSDKLbs.setChannel("IP");
+        AdjustExtend.addStandardDeepLink(this.getIntent().getData());
+        Adjust.appWillOpenUrl(this.getIntent().getData());
+      ]]>
+    </insert>
+  </gameActivityOnCreateAdditions>
+
+  <!--GameActivity.java onDestroy添加代码-->
+  <gameActivityOnDestroyAdditions>
+    <insert>
+
+    </insert>
+  </gameActivityOnDestroyAdditions>
+
+  <!--GameActivity.java onStart添加代码-->
+  <gameActivityOnStartAdditions>
+    <insert>
+
+    </insert>
+  </gameActivityOnStartAdditions>
+
+  <!--GameActivity.java OnRestart添加代码-->
+  <gameActivityOnRestartAdditions>
+    <insert>
+
+    </insert>
+  </gameActivityOnRestartAdditions>
+
+  <!--GameActivity.java onStop添加代码-->
+  <gameActivityOnStopAdditions>
+    <insert>
+
+    </insert>
+  </gameActivityOnStopAdditions>
+
+  <!--GameActivity.java onPause添加代码-->
+  <gameActivityOnPauseAdditions>
+    <insert>
+
+    </insert>
+  </gameActivityOnPauseAdditions>
+
+  <!--GameActivity.java onResume添加代码-->
+  <gameActivityOnResumeAdditions>
+    <insert>
+
+    </insert>
+  </gameActivityOnResumeAdditions>
+
+  <!-- GameActivity.java onActivityResult添加代码 -->
+  <gameActivityOnActivityResultAdditions>
+    <insert>
+
+    </insert>
+  </gameActivityOnActivityResultAdditions>
+
+  <!--GameActivity.java OnNewIntent添加代码-->
+  <gameActivityOnNewIntentAdditions>
+    <insert>
+        <![CDATA[
+            AdjustExtend.addStandardDeepLink(newIntent.getData());
+            Adjust.appWillOpenUrl(newIntent.getData());
+        ]]>
+    </insert>
+  </gameActivityOnNewIntentAdditions>
+
+  <proguardAdditions>
+    <insert> 
+      -keep class com.tencent.imsdk.** {*;} 
+      -keep public class com.tencent.bugly.**{*;} 
+      -ignorewarnings
+      -keep class com.qq.taf.jce.* {*;}
+      -keep class com.tencent.mid.* {*;}
+      -keep class com.tencent.android.tpush.** {*;}
+      -keep class com.tencent.stat.**  {* ;}
+      -keep class com.tencent.mid.**  {* ;}
+      -keep class com.tencent.mm.opensdk.** {*;}
+      -keep class com.tencent.wxop.** {*;}
+      -keep class com.tencent.mm.sdk.** {*;}
+    </insert>
+  </proguardAdditions>
+
+</root>

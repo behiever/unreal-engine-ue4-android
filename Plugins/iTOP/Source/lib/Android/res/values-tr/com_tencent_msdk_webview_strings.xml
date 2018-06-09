@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="share_success">Paylaşıldı</string>
+    <string name="share_failure">Paylaşma başarısız</string>
+    <string name="share_cancel">Paylaşma iptal edildi</string>
+
+    <string name="imsdk_webview_cancel">İptal</string>
+
+</resources>

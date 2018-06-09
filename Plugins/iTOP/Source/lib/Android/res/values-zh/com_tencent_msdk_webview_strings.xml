@@ -1,0 +1,19 @@
+<resources>
+    <string name="msdk_upload_file_title">上传文件</string>
+    <string name="imsdk_webview_back">回退</string>
+    <string name="imsdk_webview_forward">前进</string>
+    <string name="imsdk_webview_refresh">刷新</string>
+    <string name="imsdk_webview_stop">停止刷新</string>
+    <string name="imsdk_webview_close">关闭</string>
+    <string name="imsdk_webview_share">分享</string>
+
+    <string name="share_facebook">Facebook</string>
+    <string name="share_wechat">微信</string>
+    <string name="share_browser">Browser</string>
+
+    <string name="imsdk_webview_cancel">取消</string>
+    <string name="share_success">分享成功</string>
+    <string name="share_failure">分享失败</string>
+    <string name="share_cancel">分享取消</string>
+
+</resources>
