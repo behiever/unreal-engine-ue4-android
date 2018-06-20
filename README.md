@@ -1,4 +1,7 @@
-# ue4androiddemo
+# ue4androiddemo</br>
+    
+![image](https://github.com/ShibinHuang/HomeAnimationImageView/blob/master/ezgif-5-710f8d46fe.gif)
+
 ## 一、 概述
 UE4是类似于Unity的新一代游戏开发平台，提高PC端，移动端接入功能，采用C++语言开发。 
 这是一个ue4的android版本demo,内有调用facebook渠道登陆的例子，采用了插件化的设计结构，旨在告诉大家一个ue4-android工程的正常目录结构。让大家少走弯路。
@@ -42,7 +45,5 @@ UE4是类似于Unity的新一代游戏开发平台，提高PC端，移动端接�
 	```
 
 ### 三、调用插件  
-    首先你要学会c++如何调用蓝图，学会了以后查看iTOPWidget.cpp(和蓝图对应的demo类)里有对应的Jni代码实现</br>
-    
-![image](https://github.com/ShibinHuang/HomeAnimationImageView/blob/master/ezgif-5-710f8d46fe.gif)
+    首先你要学会c++如何调用蓝图，学会了以后查看iTOPWidget.cpp(和蓝图对应的demo类)里有对应的Jni代码实现
     
